@@ -12,5 +12,5 @@ public interface RestockRepository extends JpaRepository<RestockBean,String> {
     // 查詢最新的 Restock ID 並排序
     @Query("SELECT r FROM RestockBean r WHERE r.restockId LIKE :restockIdPattern ORDER BY r.restockId DESC")
     Optional<RestockBean> findLatestRestockByDate(@Param("restockIdPattern") String restockIdPattern);
-        int i=1;
+
 }
