@@ -1,10 +1,27 @@
-HELP.md
-target/
+2024.09.01 星期日
+14:42 健綸 43:08
+2024.09.02 星期一
+08:58 健綸 workspace.zip
+2024.09.06 星期五
+13:11 蔡宜哲 [LINE Pay]
+已將 NT$ 100 轉帳給健綸。
+在 iPhone 或 Android 上查看詳細說明。
+2024.09.10 星期二
+10:16 蔡宜哲 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
 .apt_generated
 .classpath
 .factorypath
@@ -12,12 +29,6 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +42,550 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Mac OS ###
+.DS_Store
+10:27 健綸 git上面的ignore是最新的了~感覺clone新的會比較安全
+16:47 健綸 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<property name="hibernate.connection.datasource">java:comp/env/jdbc/ispan</property>
+
+		<!-- <property name="hibernate.connection.datasource">java:comp/env/connectSQLServerConn/OrderSystem</property> -->
+
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.use_sql_comments">true</property>
+
+		<!-- 連接池配置 -->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+
+        <!-- 事務管理配置 -->
+        <property name="hibernate.transaction.coordinator_class">jdbc</property>
+
+        <!-- 二級緩存配置 -->
+        <property name="hibernate.cache.use_second_level_cache">false</property>
+
+		<!-- 實體映射 -->
+		<mapping class="com.MarketMaster.model.House"/>
+		<mapping class="com.MarketMaster.bean.checkout.CheckoutBean"/>
+		<mapping class="com.MarketMaster.bean.checkout.CheckoutDetailsBean"/>
+		<mapping class="com.MarketMaster.bean.checkout.ReturnProductBean"/>
+		<mapping class="com.MarketMaster.bean.checkout.ReturnDetailsBean"/>
+
+		<!-- 如果有 EmpBean，請添加以下行 -->
+        <mapping class="com.MarketMaster.bean.employee.EmpBean"/>
+        <mapping class="com.MarketMaster.bean.employee.RankLevelBean"/>
+        <mapping class="com.MarketMaster.bean.employee.CustomerBean"/>
+        <mapping class="com.MarketMaster.bean.product.ProductBean"/>
+
+
+	</session-factory>
+</hibernate-configuration>
+
+17:40 健綸 <project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>marketMaster2</groupId>
+	<artifactId>marketMaster2</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<dependencies>
+
+		<!-- Hibernate 核心 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.6.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>12.8.1.jre11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>8.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10.1</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>jakarta.servlet.jsp</groupId>
+		    <artifactId>jakarta.servlet.jsp-api</artifactId>
+		    <version>3.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
+			<version>3.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<release>17</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.3</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+19:06 健綸 package com.MarketMaster.util;
+
+// 導入必要的 Hibernate 類
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+// 定義 HibernateUtil 類，用於管理 Hibernate SessionFactory
+public class HibernateUtil {
+
+    // 聲明一個靜態的 final SessionFactory 實例
+    // 使用 static 確保全局唯一，final 確保不可變
+    private static final SessionFactory factory = createSessionFactory();
+
+    // 私有靜態方法，用於創建 SessionFactory
+    // 這個方法只在類初始化時被調用一次
+    private static SessionFactory createSessionFactory() {
+        // 創建 StandardServiceRegistry，它保存了 Hibernate 的服務配置
+    	// .configure() 方法會加載默認的 hibernate.cfg.xml 配置文件。
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        // 使用 registry 創建 MetadataSources，然後構建 Metadata，最後創建 SessionFactory
+        SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        // 返回創建的 SessionFactory
+        return sf;
+    }
+
+    // 公共靜態方法，提供對 SessionFactory 的訪問
+    // 這允許應用程序的其他部分獲取 SessionFactory 實例
+    public static SessionFactory getSessionFactory() {
+        return factory;
+    }
+
+    // 公共靜態方法，用於關閉 SessionFactory
+    // 這通常在應用程序關閉時調用，以釋放資源
+    public static void closeSessionFactory() {
+        // 檢查 factory 是否為 null，避免 NullPointerException
+        if (factory != null) {
+            // 如果 factory 不為 null，則關閉它
+            factory.close();
+        }
+    }
+}
+19:41 蔡宜哲 圖片
+19:41 蔡宜哲 CREATE TABLE restock_details (
+    restock_id VARCHAR(30),
+    product_id VARCHAR(30),
+    number_of_restock INT,
+    product_name NVARCHAR(30) NOT NULL,
+    restock_price INT NOT NULL,
+    restock_total_price INT NOT NULL,
+    production_date DATE,
+    due_date DATE NOT NULL,
+    RESTOCK_DATE DATE
+);
+19:43 蔡宜哲 CREATE TABLE restock_details (
+    restock_id VARCHAR(30) NOT NULL,
+    product_id VARCHAR(30) NOT NULL,
+    number_of_restock INT NOT NULL,
+    product_name NVARCHAR(30) NOT NULL,
+    restock_price INT NOT NULL,
+    restock_total_price INT NOT NULL,
+    production_date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    RESTOCK_DATE DATE NOT NULL
+);
+19:47 蔡宜哲 CREATE TABLE restocks (
+    restock_id VARCHAR(30) NOT NULL,
+    employee_id VARCHAR(30) NOT NULL,
+    restock_total_price INT NOT NULL,
+    restock_date DATE NOT NULL
+);
+2024.09.11 星期三
+11:38 健綸 剛才發現結帳& 進貨的bug了，
+員工那邊離職了(有離職日期)，
+但我們選負責員工還抓得到離職員工的名字
+11:44 蔡宜哲 應該是選擇負責員工的時候要排除離職的員工
+11:44 蔡宜哲 我昨天有跟國定討論這個
+11:44 蔡宜哲 鼎
+11:45 健綸 對啊就是要再多一個判斷
+如果resigndate欄位有值，就不能抓這筆資料
+11:45 蔡宜哲 貼圖
+11:46 蔡宜哲 沒問題
+11:48 健綸 貼圖
+13:37 健綸 宜哲你午餐錢還沒給我吧~~
+13:38 蔡宜哲 [LINE Pay]
+已將 NT$ 175 轉帳給健綸。
+在 iPhone 或 Android 上查看詳細說明。
+13:38 蔡宜哲 貼圖
+13:38 已收回訊息
+13:38 健綸 貼圖
+13:38 蔡宜哲 查收
+13:39 蔡宜哲 貼圖
+2024.09.18 星期三
+19:35 蔡宜哲 [LINE Pay]
+已將 NT$ 180 轉帳給健綸。
+在 iPhone 或 Android 上查看詳細說明。
+2024.09.19 星期四
+19:32 蔡宜哲 [LINE Pay]
+已將 NT$ 90 轉帳給健綸。
+在 iPhone 或 Android 上查看詳細說明。
+19:40 蔡宜哲 圖片
+2024.09.26 星期四
+20:37 健綸 .zip
+20:38 健綸 # Created by https://www.toptal.com/developers/gitignore/api/windows,java,maven,macos,eclipse,intellij,netbeans
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,java,maven,macos,eclipse,intellij,netbeans
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+.apt_generated_test/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+# Uncomment this line if you wish to ignore the project description file.
+# Typically, this file would be tracked if it contains build/dependency configurations:
+#.project
+
+### Eclipse Patch ###
+# Spring Boot Tooling
+.sts4-cache/
+
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+*.iml
+
+# AWS User-specific
+.idea/**/aws.xml
+
+# Generated files
+.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
+
+# CMake
+cmake-build-*/
+
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
+
+# File-based project format
+*.iws
+
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# SonarLint plugin
+.idea/sonarlint/
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Editor-based Rest Client
+.idea/httpRequests
+
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
+
+### Intellij Patch ###
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+# *.iml
+# modules.xml
+# .idea/misc.xml
+# *.ipr
+
+# Sonarlint plugin
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
+.idea/**/sonarlint/
+
+# SonarQube Plugin
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+.idea/**/sonarIssues.xml
+
+# Markdown Navigator plugin
+# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/markdown-navigator/
+
+# Cache file creation bug
+# See https://youtrack.jetbrains.com/issue/JBR-2257
+.idea/$CACHE_FILE$
+
+# CodeStream plugin
+# https://plugins.jetbrains.com/plugin/12206-codestream
+.idea/codestream.xml
+
+# Azure Toolkit for IntelliJ plugin
+# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
+.idea/**/azureSettings.xml
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse m2e generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/windows,java,maven,macos,eclipse,intellij,netbeans
